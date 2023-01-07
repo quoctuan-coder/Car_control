@@ -4,20 +4,21 @@
 // Neu khong test thi chuyen thanh false
 #define TESTING true
 
+#define H_Type  HI216 // L298 
 
 // Motor Car A
 #define IN1_GPIO  7
-#define IN2_GPIO  8
+//#define IN2_GPIO  8
 #define ENA_SPEED 5
 
 // Motor Car B
 #define IN3_GPIO  9
-#define IN4_GPIO  10
+//#define IN4_GPIO  10
 #define ENB_SPEED 6
 
 // Motor Cutting 
 #define IN5_GPIO  12
-#define IN6_GPIO  13
+//#define IN6_GPIO  13
 #define ENC_SPEED 11
 
 // Define speed 
@@ -35,7 +36,7 @@ int speed_cutting = 0;
 static void _test_hw_motor_A()
 {
   digitalWrite(IN1_GPIO, HIGH);
-  digitalWrite(IN2_GPIO, LOW);
+ // digitalWrite(IN2_GPIO, LOW);
   for (int speed = 0; speed < 255; speed = speed + 10)
   {
     analogWrite(ENA_SPEED, speed);
@@ -46,7 +47,7 @@ static void _test_hw_motor_A()
 static void _test_hw_motor_B()
 {
   digitalWrite(IN3_GPIO, HIGH);
-  digitalWrite(IN4_GPIO, LOW);
+  //digitalWrite(IN4_GPIO, LOW);
   for (int speed = 0; speed < 255; speed = speed + 10)
   {
     analogWrite(ENB_SPEED, speed);
@@ -57,7 +58,7 @@ static void _test_hw_motor_B()
 static void _test_hw_motor_Cutting()
 {
   digitalWrite(IN5_GPIO, HIGH);
-  digitalWrite(IN6_GPIO, LOW);
+  //digitalWrite(IN6_GPIO, LOW);
   for (int speed = 0; speed < 255; speed = speed + 10)
   {
     analogWrite(ENC_SPEED, speed);
@@ -68,16 +69,16 @@ static void _test_hw_motor_Cutting()
 // Main function
 static void _control_stop_car()
 {
-   analogWrite(ENA_SPEED, speed_car);
-   analogWrite(ENB_SPEED, speed_car);
-   analogWrite(ENC_SPEED, speed_car);
+   analogWrite(ENA_SPEED, 0);
+   analogWrite(ENB_SPEED, 0);
+   analogWrite(ENC_SPEED, 0);
   
-   digitalWrite(IN1_GPIO, LOW);
-   digitalWrite(IN2_GPIO, LOW);
-   digitalWrite(IN3_GPIO, LOW);
-   digitalWrite(IN4_GPIO, LOW);
-   digitalWrite(IN5_GPIO, LOW);
-   digitalWrite(IN6_GPIO, LOW);
+   //digitalWrite(IN1_GPIO, LOW);
+   //digitalWrite(IN2_GPIO, LOW);
+   //digitalWrite(IN3_GPIO, LOW);
+   //digitalWrite(IN4_GPIO, LOW);
+   //digitalWrite(IN5_GPIO, LOW);
+   //digitalWrite(IN6_GPIO, LOW);
 } 
 void _control_cutting_set_speed(int speed_pwm)
 {
@@ -87,14 +88,14 @@ void _control_cutting_set_speed(int speed_pwm)
 void _control_cutting_on()
 {
     digitalWrite(IN4_GPIO, HIGH);
-    digitalWrite(IN5_GPIO, LOW);
+    //digitalWrite(IN5_GPIO, LOW);
     _control_cutting_set_speed(speed_cutting);
 }
 
 void _control_cutting_off()
 {
-    digitalWrite(IN4_GPIO, LOW);
-    digitalWrite(IN5_GPIO, LOW);
+    //digitalWrite(IN4_GPIO, LOW);
+    //digitalWrite(IN5_GPIO, LOW);
     _control_cutting_set_speed(0);
 }
 
@@ -107,10 +108,10 @@ static void _control_car_set_speed(int speed_pwm)
 static void _control_forward_car()
 { 
   digitalWrite(IN1_GPIO, HIGH);
-  digitalWrite(IN2_GPIO, LOW);
+  //digitalWrite(IN2_GPIO, LOW);
 
   digitalWrite(IN3_GPIO, HIGH);
-  digitalWrite(IN4_GPIO, LOW);
+  //digitalWrite(IN4_GPIO, LOW);
 
   _control_car_set_speed(speed_car);
 }
@@ -118,10 +119,10 @@ static void _control_forward_car()
 static void _control_backward_car()
 {
   digitalWrite(IN1_GPIO, LOW);
-  digitalWrite(IN2_GPIO, HIGH);
+  //digitalWrite(IN2_GPIO, HIGH);
 
   digitalWrite(IN3_GPIO, LOW);
-  digitalWrite(IN4_GPIO, HIGH);
+  //digitalWrite(IN4_GPIO, HIGH);
   
   _control_car_set_speed(speed_car);
 }
@@ -129,10 +130,10 @@ static void _control_backward_car()
 static void _control_turn_right_car()
 {
   digitalWrite(IN1_GPIO, HIGH);
-  digitalWrite(IN2_GPIO, LOW);
+  //digitalWrite(IN2_GPIO, LOW);
 
   digitalWrite(IN3_GPIO, LOW);
-  digitalWrite(IN4_GPIO, HIGH);
+  //digitalWrite(IN4_GPIO, HIGH);
 
   _control_car_set_speed(speed_car);
 }
@@ -140,10 +141,10 @@ static void _control_turn_right_car()
 static void _control_turn_left_car()
 {
   digitalWrite(IN1_GPIO, LOW);
-  digitalWrite(IN2_GPIO, HIGH);
+  //digitalWrite(IN2_GPIO, HIGH);
 
   digitalWrite(IN3_GPIO, HIGH);
-  digitalWrite(IN4_GPIO, LOW);
+  //digitalWrite(IN4_GPIO, LOW);
 
   _control_car_set_speed(speed_car);
 }
@@ -151,11 +152,11 @@ static void _control_turn_left_car()
 static void _control_car_init()
 {
     pinMode(IN1_GPIO, OUTPUT);
-    pinMode(IN2_GPIO, OUTPUT);
+    //pinMode(IN2_GPIO, OUTPUT);
     pinMode(IN3_GPIO, OUTPUT);
-    pinMode(IN4_GPIO, OUTPUT);
+    //pinMode(IN4_GPIO, OUTPUT);
     pinMode(IN5_GPIO, OUTPUT);
-    pinMode(IN6_GPIO, OUTPUT);
+    //pinMode(IN6_GPIO, OUTPUT);
 
     pinMode(ENA_SPEED, OUTPUT);
     pinMode(ENB_SPEED, OUTPUT);

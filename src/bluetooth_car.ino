@@ -2,7 +2,7 @@
 #include <SoftwareSerial.h>
 
 // Neu khong test thi chuyen thanh false
-#define TESTING true
+#define TESTING false
 
 #define H_Type  HI216 // L298 
 
@@ -71,7 +71,7 @@ static void _control_stop_car()
 {
    analogWrite(ENA_SPEED, 0);
    analogWrite(ENB_SPEED, 0);
-   analogWrite(ENC_SPEED, 0);
+  //  analogWrite(ENC_SPEED, 0);  Skip status motor
   
    //digitalWrite(IN1_GPIO, LOW);
    //digitalWrite(IN2_GPIO, LOW);
@@ -87,8 +87,8 @@ void _control_cutting_set_speed(int speed_pwm)
 
 void _control_cutting_on()
 {
-    digitalWrite(IN4_GPIO, HIGH);
-    //digitalWrite(IN5_GPIO, LOW);
+    // digitalWrite(IN4_GPIO, HIGH);
+    digitalWrite(IN5_GPIO, LOW);
     _control_cutting_set_speed(speed_cutting);
 }
 
